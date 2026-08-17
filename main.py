@@ -23,6 +23,13 @@ def main():
     # create a screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # create 2 empty groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # add Player class to the updatable and drawable groups
+    Player.containers = (updatable, drawable)
+
     # create player in the middle of the screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
@@ -35,8 +42,9 @@ def main():
         # fill the screen black
         screen.fill("black")
 
-        player.update(dt)
-        player.draw(screen)
+        updatable.update(dt)
+        for d in drawable:
+            d.draw(screen)
 
         # update the screen
         pygame.display.flip()
