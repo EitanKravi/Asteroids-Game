@@ -5,6 +5,8 @@ from logger import log_state
 
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 
 def main():
@@ -23,15 +25,22 @@ def main():
     # create a screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-    # create 2 empty groups
+    # create 3 empty groups
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
 
     # add Player class to the updatable and drawable groups
     Player.containers = (updatable, drawable)
+    # add Asteroid class to the asteroids, updatable and drawable groups
+    Asteroid.containers = (asteroids, updatable, drawable)
+    # add AsteroidField class to the updatable group
+    AsteroidField.containers = updatable
 
     # create player in the middle of the screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
+    asteroid_field = AsteroidField()
 
     # main loop
     while True:
