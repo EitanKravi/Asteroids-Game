@@ -35,6 +35,7 @@ def main():
         # fill the screen black
         screen.fill("black")
 
+        player.update(dt)
         player.draw(screen)
 
         # update the screen
