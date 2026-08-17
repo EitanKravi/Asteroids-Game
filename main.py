@@ -4,6 +4,7 @@ import pygame
 from logger import log_state
 
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from player import Player
 
 
 def main():
@@ -22,13 +23,21 @@ def main():
     # create a screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # create player in the middle of the screen
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
     # main loop
     while True:
         log_state()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        # fill the screen black
         screen.fill("black")
+
+        player.draw(screen)
+
+        # update the screen
         pygame.display.flip()
 
         # update delta time for 60 FPS
