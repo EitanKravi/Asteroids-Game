@@ -40,3 +40,8 @@ class Asteroid(circleshape.CircleShape):
         # set the new velocity for the new 2 asteroids
         asteroid1.velocity +=  velocity1 * 1.2
         asteroid2.velocity += velocity2 * 1.2
+
+    def get_score(self) -> int | float:
+        if self.radius <= ASTEROID_MIN_RADIUS:
+            return 10
+        return (self.radius // ASTEROID_MIN_RADIUS) * 10
